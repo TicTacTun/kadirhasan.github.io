@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- EDIT: your name and a one-line description (shows in browser tab and Google) -->
+  <title>Kadir Hasan | Technical Analyst and CSE Graduate</title>
+  <meta name="description" content="Portfolio of Kadir Hasan: enterprise IT support, endpoint security and network security research. BSc in CSE, BRAC University.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- COLORS: change these to restyle the whole site ---------- */
+    :root {
+      --bg: #f3f5f8;
+      --surface: #ffffff;
+      --ink: #14213d;
+      --muted: #55627a;
+      --line: #d6dbe4;
+      --accent: #2b59ff;
+      --accent-ink: #ffffff;
+    }
+    :root[data-theme="dark"] {
+      --bg: #0f1626;
+      --surface: #172038;
+      --ink: #e8ecf5;
+      --muted: #9aa6bf;
+      --line: #2a3555;
+      --accent: #7b9bff;
+      --accent-ink: #0f1626;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0f1626; --surface: #172038; --ink: #e8ecf5;
+        --muted: #9aa6bf; --line: #2a3555; --accent: #7b9bff; --accent-ink: #0f1626;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+    }
+    h1, h2, h3 { font-family: "Bricolage Grotesque", "Figtree", system-ui, sans-serif; line-height: 1.1; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ---------- Navigation ---------- */
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 4rem; gap: 1rem; }
+    .brand { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; text-decoration: none; font-size: 1.15rem; }
+    .nav ul { display: flex; gap: 1.1rem; list-style: none; align-items: center; }
+    .nav ul a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 0.93rem; }
+    .nav ul a:hover { color: var(--ink); }
+    #theme-btn {
+      background: none; border: 1px solid var(--line); color: var(--ink);
+      border-radius: 999px; padding: 0.3rem 0.8rem; font: inherit; font-size: 0.9rem; cursor: pointer;
+    }
+    #theme-btn:hover { border-color: var(--accent); }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 6rem 0 4.5rem; }
+    .hero .hello { color: var(--muted); font-weight: 500; margin-bottom: 1rem; }
+    .hero h1 {
+      font-size: clamp(3.2rem, 11vw, 7.5rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.6rem;
+    }
+    .hero p.lead { font-size: 1.3rem; max-width: 34rem; color: var(--muted); }
+    .hero p.lead strong { color: var(--ink); font-weight: 600; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2.2rem; }
+    .btn {
+      display: inline-block; padding: 0.75rem 1.4rem; border-radius: 10px;
+      font-weight: 600; text-decoration: none; border: 1px solid var(--ink);
+    }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .btn.primary:hover { filter: brightness(1.1); }
+    .btn.ghost:hover { background: var(--surface); }
+
+    /* ---------- Sections ---------- */
+    section { padding: 4rem 0; border-top: 1px solid var(--line); }
+    .grid { display: grid; grid-template-columns: 11rem 1fr; gap: 2rem; }
+    section h2 { font-size: 1.5rem; font-weight: 700; }
+    .about p + p { margin-top: 1rem; }
+
+    /* Skills */
+    .skills { display: grid; gap: 1.1rem; }
+    .skill-row { display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; align-items: baseline; }
+    .skill-row dt { font-weight: 600; }
+    .skill-row dd { color: var(--muted); }
+
+    /* Projects: rows instead of identical cards */
+    .project { padding: 1.6rem 0; border-bottom: 1px solid var(--line); }
+    .project:first-child { padding-top: 0; }
+    .project:last-child { border-bottom: 0; padding-bottom: 0; }
+    .project h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .project p { color: var(--muted); max-width: 40rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0.9rem 0; }
+    .tags li {
+      font-size: 0.85rem; padding: 0.15rem 0.7rem; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--line);
+    }
+    .links a { font-weight: 600; color: var(--accent); margin-right: 1.2rem; text-underline-offset: 4px; }
+
+    /* Experience */
+    .job { padding: 0 0 2rem; }
+    .job + .job { padding-top: 2rem; border-top: 1px solid var(--line); }
+    .job h3 { font-size: 1.25rem; font-weight: 700; }
+    .job .where { color: var(--muted); margin-bottom: 0.8rem; }
+    .job ul { padding-left: 1.1rem; }
+    .job li { margin-bottom: 0.4rem; }
+    .job li::marker { color: var(--accent); }
+    .job:last-child { padding-bottom: 0; }
+
+    /* Education */
+    .edu h3 { font-size: 1.2rem; font-weight: 700; }
+    .edu p { color: var(--muted); }
+    .edu + .edu { margin-top: 1.4rem; }
+
+    /* Contact */
+    .contact .big {
+      font-family: "Bricolage Grotesque", sans-serif; font-weight: 700;
+      font-size: clamp(1.4rem, 4.5vw, 2.4rem); text-decoration-color: var(--accent);
+      text-underline-offset: 6px; word-break: break-all;
+    }
+    .socials { display: flex; flex-wrap: wrap; gap: 1.4rem; list-style: none; margin-top: 1.4rem; }
+    .socials a { font-weight: 600; text-underline-offset: 4px; }
+
+    footer { padding: 2.5rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; }
+
+    /* ---------- Small screens ---------- */
+    @media (max-width: 860px) {
+      .nav ul li:not(:last-child) { display: none; } /* keep only theme button on small screens */
+    }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; gap: 1rem; }
+      .skill-row { grid-template-columns: 1fr; gap: 0; }
+      .hero { padding: 4rem 0 3rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <!-- EDIT: your initials or name -->
+      <a class="brand" href="#top">KH</a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button id="theme-btn" type="button" aria-label="Switch between light and dark theme">Dark</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap">
+
+      <!-- ============ HERO ============ -->
+      <div class="hero">
+        <p class="hello">Hi, I’m</p>
+        <!-- EDIT: your full name -->
+        <h1>Kadir Hasan</h1>
+        <!-- EDIT: one or two sentences about what you do and want to do -->
+        <p class="lead">I’m a <strong>technical analyst and computer science graduate</strong> who keeps enterprise IT secure and running, with published research in network security.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <!-- Your CV file KadirHasan_CV.pdf must stay in the same folder as this page -->
+          <a class="btn ghost" href="KadirHasan_CV.pdf" download>Download CV</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <!-- ============ ABOUT ============ -->
+      <section id="about" class="about">
+        <div class="grid">
+          <h2>About me</h2>
+          <div>
+            <p>I graduated with a BSc in Computer Science and Engineering from BRAC University and have worked in enterprise IT at a global bank and at a software company. My daily work covers system deployment, OS migration, endpoint compliance and end-user support.</p>
+            <p>Networking and cybersecurity are where I want to grow. My research on detecting DDoS attacks with machine learning was presented at ICCIT and published in IEEE Xplore. I’m based in Dhaka, Bangladesh.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EXPERIENCE ============ -->
+      <section id="experience">
+        <div class="grid">
+          <h2>Experience</h2>
+          <div>
+            <article class="job">
+              <h3>Technical Analyst</h3>
+              <p class="where">Standard Chartered Bank, Dhaka. July 2025 to April 2026</p>
+              <ul>
+                <li>Supported the Head Office renovation by keeping endpoints and networks available during the move, then set up and tested new workstations, network and printing.</li>
+                <li>Validated systems after migration (UVT), which reduced incidents after deployment.</li>
+                <li>Rebuilt and reinstalled operating systems, migrated user data securely, and degaussed hard drives in line with bank security and IT governance policies.</li>
+                <li>Resolved hardware, software and connectivity tickets within SLA, and handled service requests such as printer setup and approved software deployment.</li>
+                <li>Supported patch management and the Windows 10 to Windows 11 migration, and prepared laptops and ran IT onboarding sessions for new joiners.</li>
+              </ul>
+            </article>
+            <article class="job">
+              <h3>IT Support Engineer</h3>
+              <p class="where">BJIT Limited, Dhaka. October 2024 to February 2025</p>
+              <ul>
+                <li>Gave L1 and L2 desk-side and remote support across Windows, Linux and macOS, resolving incidents within SLA targets.</li>
+                <li>Installed and managed operating systems, network devices, VPNs, mail, virtual machines and remote servers.</li>
+                <li>Maintained printers, scanners and access control systems, and managed hardware and software inventory.</li>
+                <li>Ran IT and security awareness sessions and audits for end users.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SKILLS ============ -->
+      <section id="skills">
+        <div class="grid">
+          <h2>Skills</h2>
+          <dl class="skills">
+            <div class="skill-row"><dt>Endpoint and security operations</dt><dd>Wazuh (SIEM), endpoint compliance, patch management, secure data handling, OS deployment</dd></div>
+            <div class="skill-row"><dt>Networking and security testing</dt><dd>Wireshark, tcpdump, Nmap, Metasploit, John the Ripper, Cisco Packet Tracer, Mininet, PuTTY, VPN (foundational level)</dd></div>
+            <div class="skill-row"><dt>Systems</dt><dd>Windows 10 and 11, WinPE, Linux (Ubuntu, Linux Mint), macOS</dd></div>
+            <div class="skill-row"><dt>Programming</dt><dd>Python, Java, C, PHP, MySQL, Laravel</dd></div>
+            <div class="skill-row"><dt>Tools</dt><dd>Git, Blancco, Acronis True Image, AOMEI Partition Assistant, Proteus, LaTeX</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ============ RESEARCH ============ -->
+      <section id="research">
+        <div class="grid">
+          <h2>Research</h2>
+          <div>
+            <article class="project">
+              <h3>Real-Time DDoS Detection in Software-Defined Networks Using Machine Learning</h3>
+              <p>A real-time approach to detect DDoS attacks in IoT environments, built on an SDN architecture that watches live network traffic and uses machine learning with traffic preprocessing. Presented at the 27th International Conference on Computer and Information Technology (ICCIT) and published in IEEE Xplore in June 2025.</p>
+              <ul class="tags"><li>SDN</li><li>Machine learning</li><li>IoT</li><li>Network security</li></ul>
+              <p class="links"><a href="https://doi.org/10.1109/ICCIT64611.2024.11022460">Read the paper (IEEE)</a></p>
+            </article>
+            <article class="project">
+              <h3>Election Sentiment Analysis Through NLP of Political Discourse</h3>
+              <p>Analyzed more than 958,000 tweets from the 2020 US Presidential Election with TextBlob, VADER and BERT, and built a custom LSTM-Attention-GRU model that reached 81.5% classification accuracy.</p>
+              <ul class="tags"><li>NLP</li><li>BERT</li><li>LSTM</li><li>Python</li></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PROJECTS ============ -->
+      <section id="projects">
+        <div class="grid">
+          <h2>Projects</h2>
+          <div>
+            <article class="project">
+              <h3>Smart Flood Detection System</h3>
+              <p>A physical device built on an Arduino UNO for flood-affected areas. It combines an ultrasonic sensor, a water level sensor and a BMP pressure sensor.</p>
+              <ul class="tags"><li>C++</li><li>Arduino</li><li>Sensors</li></ul>
+              <p class="links"><a href="https://github.com/TicTacTun/Smart-Flood-Detection">Source code</a></p>
+            </article>
+            <article class="project">
+              <h3>Pong Game</h3>
+              <p>A single-player Pong game where you control a paddle and the opponent’s paddle moves with its own simple AI.</p>
+              <ul class="tags"><li>Python</li><li>Pygame</li></ul>
+              <p class="links"><a href="https://github.com/TicTacTun/Pong-Game">Source code</a></p>
+            </article>
+            <article class="project">
+              <h3>Sleep Disorder Classification</h3>
+              <p>Prepared the data with feature engineering and splitting, then compared several machine learning models to check how well the dataset supports classification.</p>
+              <ul class="tags"><li>Python</li><li>scikit-learn</li><li>pandas</li></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EDUCATION ============ -->
+      <section id="education">
+        <div class="grid">
+          <h2>Education</h2>
+          <div>
+            <div class="edu">
+              <h3>BSc in Computer Science and Engineering</h3>
+              <p>BRAC University, Dhaka. January 2020 to May 2024. CGPA 3.71</p>
+              <p>Relevant courses: Data Structures and Algorithms, Database Systems, Computer Networks, Operating Systems, Computer Architecture, Artificial Intelligence, NLP, Robotics, VLSI Design.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CERTIFICATIONS ============ -->
+      <section id="certifications">
+        <div class="grid">
+          <h2>Certifications</h2>
+          <div>
+            <div class="edu">
+              <h3>Certified in Cybersecurity (CC)</h3>
+              <p>ISC2. Security principles, incident response, business continuity and disaster recovery, access control, network security, security operations.</p>
+            </div>
+            <div class="edu">
+              <h3>Google Cybersecurity Professional Certificate</h3>
+              <p>Coursera. Security risk management, network security, Linux and SQL command line, assets, threats and vulnerabilities.</p>
+            </div>
+            <div class="edu">
+              <h3>Networking Basics</h3>
+              <p>Cisco Networking Academy. Network components and media, IP addressing and segmentation, routing, ARP, TCP/UDP and application layer protocols.</p>
+            </div>
+            <div class="edu">
+              <h3>Introduction to Programming Using HTML and CSS</h3>
+              <p>Udemy</p>
+            </div>
+            <div class="edu">
+              <h3>IS101 Information Security</h3>
+              <p>BJIT Academy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EXTRACURRICULAR ============ -->
+      <section id="extracurricular">
+        <div class="grid">
+          <h2>Extracurricular</h2>
+          <div>
+            <div class="edu">
+              <h3>Robotics Club of BRAC University</h3>
+              <p>Senior Executive of Strategic Planning, January 2020 to January 2024</p>
+            </div>
+            <div class="edu">
+              <h3>Volunteering</h3>
+              <p>Volunteered at the Joyjatra tech fest 2021, and volunteered and co-planned Traction 2020, the biggest national inter-university tech carnival that year.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section id="contact" class="contact">
+        <div class="grid">
+          <h2>Contact</h2>
+          <div>
+            <p>I’m happy to hear about roles in IT, security or networking, and about research collaborations. Email is the fastest way to reach me.</p>
+            <p style="margin-top:1rem"><a class="big" href="mailto:kadirhasantutan@gmail.com">kadirhasantutan@gmail.com</a></p>
+            <ul class="socials">
+              <li><a href="https://github.com/TicTacTun">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/kadirhasan">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year">2026</span> Kadir Hasan. Built with HTML and CSS.</div>
+  </footer>
+
+  <script>
+    // Footer year updates itself
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Light / dark theme toggle (remembers choice when the browser allows it)
+    const root = document.documentElement;
+    const btn = document.getElementById("theme-btn");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    let saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    let theme = saved || (prefersDark ? "dark" : "light");
+
+    function applyTheme() {
+      root.setAttribute("data-theme", theme);
+      btn.textContent = theme === "dark" ? "Light" : "Dark";
+    }
+    btn.addEventListener("click", () => {
+      theme = theme === "dark" ? "light" : "dark";
+      try { localStorage.setItem("theme", theme); } catch (e) {}
+      applyTheme();
+    });
+    applyTheme();
+  </script>
+</body>
+</html>
